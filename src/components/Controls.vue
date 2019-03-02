@@ -50,16 +50,17 @@ export default {
                 &:link,
                 &:visited {
                     display: inline-block;
-                    padding: 6px 8px;
-                    border-radius: 6px;
+                    padding: 6px 1rem;
+                    border-radius: 50%;
                     font-size: 2.2rem;
                     color: #fff;
-                    background-color: rgba(0,0,0,.3);
+                    background-color: rgba(0,0,0,.9);
                     cursor: pointer;
                 }
             }
 
             & > a.isDisabled {
+                background-color: rgba(0,0,0,.3);
                 color: rgba(0,0,0,.3);
                 cursor: not-allowed;
             }
