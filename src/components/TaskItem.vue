@@ -46,7 +46,7 @@ export default {
                 left: 4%;
                 transform: translateY(-50%);
                 font-size: 1.6rem;
-                color: #2b2b2b;
+                color: #6f6f6f;
                 cursor: pointer;
 
                 &:hover {
