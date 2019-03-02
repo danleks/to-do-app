@@ -1,4 +1,11 @@
-# to-do-app
+# to-do app
+
+This is a simple and responsive to-to-app build with Vue.js.
+
+## helpful links:
+
+* [Live version of the APP](https://wonderful-booth-7fe74b.netlify.com/)
+
 
 ## Project setup
 ```
