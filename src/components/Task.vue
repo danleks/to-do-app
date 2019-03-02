@@ -166,6 +166,7 @@ export default {
                     border: none;
                     background: none;
                     font-size: 1.5rem;
+                    cursor: pointer;
 
                     @media(min-width: 768px) {
                         padding: 1.5rem 6rem;
