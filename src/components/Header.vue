@@ -1,5 +1,5 @@
 <template>
-    <header class="header">
+    <header :class="[task ? styles.task : styles.main, styles.header]">
         <h1 class="header__title">todos</h1>
         <p class="header__subtitle">0 open tasks</p>
     </header>
@@ -7,7 +7,22 @@
 
 <script>
 export default {
+    data() {
+        return {
+            styles: {
+                header: "header",
+                main: 'header--main',
+                task: 'header--task',
+            }
+        }
+    },
 
+    props: {
+        task: {
+            type: Boolean,
+            required: true,
+        }
+    }
 }
 </script>
 
@@ -20,7 +35,14 @@ export default {
         height: var(--header-height);
         text-align: center;
         color: var(--text-color);
-        background-color: var(--header-color);
+
+        &--main {
+            background-color: var(--header-color);
+        }
+
+        &--task {
+            background-color: var(--header-color-t);
+        }
 
         &__title {
             font-size: 3rem;

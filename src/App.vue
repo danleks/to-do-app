@@ -1,13 +1,18 @@
 <template>
   <div id="app">
-    <app-header />
+    <app-header :task="task" />
     <transition
-      name="slide"
-      leave-active-class="slideOut"
+      name="fade"
+      leave-active-class="fadeOut"
     >
       <app-content v-if="!task" />
     </transition>
+      <transition
+      name="slide"
+      enter-active-class="slideIn"
+    >
       <app-task v-if="task" />
+      </transition>
     <app-controls :tasks="tasks" v-if="!task" @add-task="addTask"/>
   </div>
 </template>
@@ -68,7 +73,9 @@ html {
   :root {
     // BASIC COLORS
     --header-color: #110025;
+    --header-color-t: #FF0046;
     --content-color: #FF0046;
+    --content-color-t: #110025;
     --text-color: #fff;
 
     // BASIC DIMENSIONS
@@ -78,13 +85,22 @@ html {
 
 
   //ANIMATIONS
-  @keyframes slideOut {
-    0% {transform: translateX(0);}
-    100% {transform: translateX(-50rem);}
+  @keyframes slideIn {
+    0% {transform: translateX(50rem); opacity: 0;}
+    100% {transform: translateX(0); opacity: 1;}
   }
 
-  .slideOut {
-    animation: slideOut .3s ease-out;
+  @keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+  }
+
+  .slideIn {
+    animation: slideIn .3s ease-out;
+  }
+
+  .fadeOut {
+    animation: fadeOut .2s ease-in;
   }
 
 

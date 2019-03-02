@@ -40,8 +40,8 @@ export default {
 <style lang="scss" scoped>
     .controls {
         position: absolute;
-        bottom: 3%;
-        right: 5%;
+        bottom: 1rem;
+        right: 1rem;
 
         &__container {
             display: flex;
