@@ -1,13 +1,13 @@
 <template>
     <div class="controls">
         <div class="controls__container">
-            <a @click="$emit('delete-all')" :class="[tasks == false ? styles.isDisabled : '']" href="#">
+            <a title="Clear" @click="$emit('delete-all')" :class="[tasks == false ? styles.isDisabled : '']" href="#">
                 <i class="fas fa-redo"></i>
             </a>
-            <a @click="$emit('delete-item')" :class="[tasks == false ? styles.isDisabled : '']" href="#">
+            <a title="Remove" @click="$emit('delete-item')" :class="[tasks == false ? styles.isDisabled : '']" href="#">
                 <i class="fas fa-trash"></i>
             </a>
-            <a @click="$emit('add-task', true)" href="#">
+            <a title="Add" @click="$emit('add-task', true)" href="#">
                 <i class="fas fa-plus"></i>
             </a>
         </div>
