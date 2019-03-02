@@ -3,17 +3,17 @@
         <div class="taskWrapper__container">
             <div class="item">
                 <!-- <label for="title">Title</label> -->
-                <input placeholder="Title" id="title" type="text">
+                <input v-model="title" placeholder="Title" id="title" type="text" required>
             </div>
             <div class="item">
                 <!-- <label for="title">Task</label> -->
-                <input placeholder="Task" id="title" type="text">
+                <input @keyup.enter="addTask"  v-model="content" placeholder="Task" id="title" type="text" required>
             </div>
         </div>
         <div class="taskWrapper__controls">
             <div class="container">
-                <a href="#" class="button button--cancel">Cancel</a>
-                <a href="#" class="button button--save">Save</a>
+                <button @click="cancel" class="button button--cancel">Cancel</button>
+                <button @click="addTask" class="button button--save">Save</button>
             </div>
         </div>
     </section>
@@ -21,6 +21,56 @@
 
 <script>
 export default {
+    data() {
+        return {
+            title: '',
+            content: '',
+            task: {},
+        }
+    },
+
+    props: {
+        tasks: {
+            type: Array,
+            required: true,
+        }
+    },
+
+    methods: {
+        addTask() {
+            let inputs = document.querySelectorAll('input');
+            let id;
+            if (this.title === '' && this.content === '') {
+                return;
+            }
+
+            if (this.tasks.length === 0) {
+                id = 1;
+            } else if(this.tasks.length > 0) {
+                id = this.tasks[this.tasks.length -1].id;
+                id++;
+            }
+
+            this.task = {
+                id,
+                title: this.title,
+                content: this.content,
+            }
+
+            this.$root.$emit('add-task', this.task, false);
+
+            this.title = '';
+            this.content = '';
+            this.task = {};
+            inputs.forEach(input => {
+                input.blur();
+            })
+        },
+
+        cancel() {
+            this.$root.$emit('cancel', false);
+        }
+    },
 
 }
 </script>
@@ -48,6 +98,10 @@ export default {
                 align-items: stretch;
                 padding: 2rem 3rem;
 
+                @media(min-width: 768px) {
+                    padding: 4rem 3rem;
+                }
+
                 // & > label {
                 //     font-size: 1.8rem;
                 //     font-weight: bold;
@@ -64,6 +118,10 @@ export default {
                     background: none;
                     transition: border .3s;
 
+                    @media(min-width: 768px) {
+                        font-size: 3.5rem;
+                    }
+
                     &:focus {
                         border-bottom: 1px solid #fff;
                     }
@@ -74,6 +132,10 @@ export default {
                         font-weight: bold;
                         color: #FF0046;
                         transition: all .3s;
+
+                        @media(min-width: 768px) {
+                            font-size: 2.8rem;
+                        }
                     }
 
                     &:focus::placeholder {
@@ -95,14 +157,19 @@ export default {
                 justify-content: space-around;
                 width: 35rem;
 
-                & > .button {
+                @media(min-width: 768px) {
+                    width: 75rem;
+                }
 
-                    &,
-                    &:link,
-                    &:visited {
-                        padding: 1rem 3.5rem;
-                        text-decoration: none;
-                        font-size: 1.5rem;
+                & > .button {
+                    padding: 1rem 3.5rem;
+                    border: none;
+                    background: none;
+                    font-size: 1.5rem;
+
+                    @media(min-width: 768px) {
+                        padding: 1.5rem 6rem;
+                        font-size: 2.8rem;
                     }
 
                     &--cancel {

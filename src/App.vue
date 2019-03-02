@@ -1,19 +1,14 @@
 <template>
   <div id="app">
-    <app-header :task="task" />
-    <transition
-      name="fade"
-      leave-active-class="fadeOut"
-    >
-      <app-content v-if="!task" />
-    </transition>
-      <transition
-      name="slide"
-      enter-active-class="slideIn"
-    >
-      <app-task v-if="task" />
-      </transition>
-    <app-controls :tasks="tasks" v-if="!task" @add-task="addTask"/>
+    <app-header :task="task" :tasks="tasks" />
+      <app-content @delete-task="deleteTask" :tasks="tasks" v-if="!task" />
+      <app-task :tasks="tasks" v-if="task" />
+    <app-controls
+    @add-task="addTask"
+    @delete-item="deleteItem"
+    @delete-all="deleteAll"
+    :tasks="tasks"
+    v-if="!task" />
   </div>
 </template>
 
@@ -32,12 +27,23 @@ export default {
     return {
       tasks: [],
       task: false,
+      id: null,
     }
   },
 
   methods: {
     addTask(e) {
       this.task = e;
+    },
+    deleteItem() {
+      this.tasks.splice(this.tasks.length-1, 1);
+    },
+    deleteAll(){
+      this.tasks = [];
+    },
+    deleteTask(e) {
+      let itemIndex = this.tasks.indexOf(e);
+      this.tasks.splice(itemIndex, 1);
     }
   },
 
@@ -47,6 +53,16 @@ export default {
     'app-controls': Controls,
     'app-task': Task,
   },
+
+  mounted() {
+    this.$root.$on('add-task', (task, boolean) => {
+      this.task = boolean;
+      this.tasks.push(task);
+    })
+     this.$root.$on('cancel', (boolean) => {
+      this.task = boolean;
+    })
+  }
 };
 </script>
 
@@ -57,6 +73,7 @@ export default {
 html {
   box-sizing: border-box;
   font-size: 62.5%;
+  overflow: hidden;
 }
 *, *:before, *:after {
   box-sizing: inherit;
@@ -65,6 +82,9 @@ html {
 }
 
 #app {
+  position: relative;
+  max-width: 768px;
+  margin: auto;
   font-family: 'Mali', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -77,31 +97,37 @@ html {
     --content-color: #FF0046;
     --content-color-t: #110025;
     --text-color: #fff;
+    --task-color: #190036;
 
     // BASIC DIMENSIONS
     --header-height: 20vh;
     --content-height: calc(100vh - var(--header-height));
+
+      @media(min-width: 768px) {
+        --content-height: calc(100vh - var(--header-height) - 5vh);
+      }
   }
 
 
   //ANIMATIONS
-  @keyframes slideIn {
-    0% {transform: translateX(50rem); opacity: 0;}
-    100% {transform: translateX(0); opacity: 1;}
-  }
+//   @keyframes zoomIn {
+//     0% {transform: scale(.5); opacity: 0;}
+//     100% {transform: scale(1);}
+//   }
 
-  @keyframes fadeOut {
-    0% {opacity: 1;}
-    100% {opacity: 0;}
-  }
+//  @keyframes fadeOut {
+//     0% {opacity: 0;}
+//     100% {opacity: 0;}
+//   }
 
-  .slideIn {
-    animation: slideIn .3s ease-out;
-  }
+//   .zoomIn {
+//     animation: zoomIn .1s ease-in;
+//   }
 
-  .fadeOut {
-    animation: fadeOut .2s ease-in;
-  }
+//   .fadeOut {
+//     animation: fadeOut .1s ease-in;
+//   }
+
 
 
 

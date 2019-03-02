@@ -1,10 +1,10 @@
 <template>
     <div class="controls">
         <div class="controls__container">
-            <a :class="[tasks == false ? styles.isDisabled : '']" href="#">
+            <a @click="$emit('delete-all')" :class="[tasks == false ? styles.isDisabled : '']" href="#">
                 <i class="fas fa-redo"></i>
             </a>
-            <a :class="[tasks == false ? styles.isDisabled : '']" href="#">
+            <a @click="$emit('delete-item')" :class="[tasks == false ? styles.isDisabled : '']" href="#">
                 <i class="fas fa-trash"></i>
             </a>
             <a @click="$emit('add-task', true)" href="#">
@@ -29,11 +29,6 @@ export default {
             required: true,
         }
     },
-
-    created() {
-        console.log(this.tasks == false);
-    }
-
 }
 </script>
 
