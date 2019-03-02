@@ -70,7 +70,7 @@ export default {
         }
 
         &__heading {
-            font-size: 3rem;
+            font-size: 4rem;
         }
     }
 </style>
