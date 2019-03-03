@@ -58,7 +58,7 @@ export default {
         }
 
         &::-webkit-scrollbar-thumb:hover {
-            background-color: rgb(248, 147, 80);
+            background-color: rgb(54, 53, 53);
         }
 
         &--vCenter {

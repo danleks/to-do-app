@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <app-header :task="task" :tasks="tasks" />
-      <app-content @delete-task="deleteTask" :tasks="tasks" v-if="!task" />
-      <app-task :tasks="tasks" v-if="task" />
+    <app-content @delete-task="deleteTask" :tasks="tasks" v-if="!task" />
+    <app-task :tasks="tasks" v-if="task" />
     <app-controls
     @add-task="addTask"
     @delete-item="deleteItem"
@@ -17,9 +17,6 @@ import Header from './components/Header.vue';
 import Content from './components/Content.vue';
 import Controls from './components/Controls.vue';
 import Task from './components/Task.vue';
-
-
-
 
 export default {
   name: 'app',
