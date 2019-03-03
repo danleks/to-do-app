@@ -73,7 +73,7 @@ export default {
             }
             & > *:nth-child(3) {
                 display: block;
-                width: 16rem;
+                width: 14rem;
                 word-break: break-all;
                 font-size: 1.3rem;
 
