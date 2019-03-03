@@ -54,7 +54,7 @@ export default {
                     border-radius: 50%;
                     font-size: 2.2rem;
                     color: #fff;
-                    background-color: rgba(0,0,0,.9);
+                    background-color: #2B2B2B;
                     cursor: pointer;
                 }
             }

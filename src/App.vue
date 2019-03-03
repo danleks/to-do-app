@@ -92,12 +92,12 @@ html {
 
   :root {
     // BASIC COLORS
-    --header-color: #110025;
-    --header-color-t: #FF0046;
-    --content-color: #FF0046;
-    --content-color-t: #110025;
+    --header-color: #2B2B2B;
+    --header-color-t: #FA8231;
+    --content-color: #FA8231;
+    --content-color-t: #2B2B2B;
     --text-color: #fff;
-    --task-color: #190036;
+    --task-color: #2B2B2B;
 
     // BASIC DIMENSIONS
     --header-height: 20vh;
@@ -107,28 +107,5 @@ html {
         --content-height: calc(100vh - var(--header-height) - 5vh);
       }
   }
-
-
-  //ANIMATIONS
-//   @keyframes zoomIn {
-//     0% {transform: scale(.5); opacity: 0;}
-//     100% {transform: scale(1);}
-//   }
-
-//  @keyframes fadeOut {
-//     0% {opacity: 0;}
-//     100% {opacity: 0;}
-//   }
-
-//   .zoomIn {
-//     animation: zoomIn .1s ease-in;
-//   }
-
-//   .fadeOut {
-//     animation: fadeOut .1s ease-in;
-//   }
-
-
-
 
 </style>

@@ -3,12 +3,15 @@
         <div class="taskWrapper__container">
             <div class="item">
                 <!-- <label for="title">Title</label> -->
-                <input v-model="title" placeholder="Title" id="title" type="text" required>
+                <input v-model="title" @keyup.enter="nextInput" placeholder="Title" id="title" type="text" required>
             </div>
             <div class="item">
                 <!-- <label for="title">Task</label> -->
-                <input @keyup.enter="addTask"  v-model="content" placeholder="Task" id="title" type="text" required>
+                <input @keyup.enter="addTask"  v-model="content" placeholder="Task" id="content" type="text" required>
             </div>
+        </div>
+        <div v-if="empty" class="taskWrapper__emptyText">
+            <span>Oops, cannot leave those fields empty.<br> Let's plan something! </span>
         </div>
         <div class="taskWrapper__controls">
             <div class="container">
@@ -26,6 +29,7 @@ export default {
             title: '',
             content: '',
             task: {},
+            empty: false,
         }
     },
 
@@ -40,7 +44,8 @@ export default {
         addTask() {
             let inputs = document.querySelectorAll('input');
             let id;
-            if (this.title === '' && this.content === '') {
+            if (this.title === '' || this.content === '') {
+                this.empty = true;
                 return;
             }
 
@@ -61,6 +66,7 @@ export default {
 
             this.title = '';
             this.content = '';
+            this.empty = false;
             this.task = {};
             inputs.forEach(input => {
                 input.blur();
@@ -69,6 +75,11 @@ export default {
 
         cancel() {
             this.$root.$emit('cancel', false);
+        },
+
+        nextInput() {
+           let nextInput = document.querySelector("#content");
+           nextInput.focus();
         }
     },
 
@@ -105,13 +116,12 @@ export default {
                 // & > label {
                 //     font-size: 1.8rem;
                 //     font-weight: bold;
-                //     color: #FF0046;
                 // }
 
                 & > input {
                     padding: 1.3rem;
                     border: none;
-                    border-bottom: 1px solid #40008b;
+                    border-bottom: 1px solid #858585;
                     outline: none;
                     font-size: 1.8rem;
                     color: #fff;
@@ -130,7 +140,7 @@ export default {
                         transform: translateY(-.5rem);
                         font-size: 1.8rem;
                         font-weight: bold;
-                        color: #FF0046;
+                        color: #FA8231;
                         transition: all .3s;
 
                         @media(min-width: 768px) {
@@ -142,6 +152,24 @@ export default {
                        transform: translateY(-3rem);
                        opacity: 0;
                     }
+                }
+            }
+        }
+
+        &__emptyText {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: slideFromTop .5s ease-out;
+
+            & > span {
+                font-size: 1.5rem;
+                text-align: center;
+                color: #aaa;
+
+                @media(min-width: 768px) {
+                    font-size: 2.5rem;
                 }
             }
         }
@@ -174,16 +202,22 @@ export default {
                     }
 
                     &--cancel {
-                        color: #4B4B4B;
+                        color: #A6A6A6;
                     }
 
                     &--save {
                         color: var(--text-color);
-                        background-color: #FF0046;
+                        background-color: #FA8231;
                     }
 
                 }
             }
         }
+    }
+
+    //ANIMATIONS
+    @keyframes slideFromTop {
+        0% {transform: translateY(-10rem); opacity: 0;}
+        100% {transform: translateY(0); opacity: 1;}
     }
 </style>

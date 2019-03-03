@@ -50,15 +50,15 @@ export default {
         }
 
         &::-webkit-scrollbar-track {
-            background-color: #FF0046;
+            background-color: #FA8231;
         }
 
         &::-webkit-scrollbar-thumb {
-            background-color: #110025;
+            background-color: #2B2B2B;
         }
 
         &::-webkit-scrollbar-thumb:hover {
-            background-color: #260253;
+            background-color: rgb(248, 147, 80);
         }
 
         &--vCenter {
@@ -70,7 +70,11 @@ export default {
         }
 
         &__heading {
-            font-size: 4rem;
+            font-size: 2.5rem;
+
+            @media(min-width: 768px) {
+                font-size: 4rem;
+            }
         }
     }
 </style>

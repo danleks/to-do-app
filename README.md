@@ -1,6 +1,6 @@
 # to-do app
 
-This is a simple and responsive to-to-app build with Vue.js.
+This is a simple and responsive to-do-app built with Vue.js.
 
 ## helpful links:
 

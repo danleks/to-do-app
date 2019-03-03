@@ -50,7 +50,7 @@ export default {
                 cursor: pointer;
 
                 &:hover {
-                    color: #FF0046;
+                    color: #e55039;
                 }
 
                 @media(min-width: 768px) {
@@ -61,10 +61,13 @@ export default {
 
             & > *:nth-child(2) {
                 display: block;
+                width: 10rem;
                 font-size: 2rem;
                 font-weight: bold;
+                word-break: break-all;
 
                 @media(min-width: 768px) {
+                    width: 40rem;
                     font-size: 3rem;
                 }
             }
